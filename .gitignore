@@ -59,3 +59,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 #Docker
 
 data
+
+# Chaves privadas e públicas
+private.key
+public.key
