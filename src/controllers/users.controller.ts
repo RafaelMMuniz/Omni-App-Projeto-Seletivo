@@ -7,7 +7,7 @@ export class UserController {
   constructor(private prisma: PrismaService) {}
 
   @Get()
-  @UseGuards(JwtAuthGuard)  // Aplica a guarda para autenticação
+  @UseGuards(JwtAuthGuard)
   async getAllUsers() {
     const users = await this.prisma.user.findMany();
 

@@ -15,7 +15,7 @@ describe('CreateAccountController', () => {
       providers: [
         {
           provide: PrismaService,
-          useValue: prismaServiceMock, // Usando o mock do Prisma aqui
+          useValue: prismaServiceMock,
         },
       ],
     }).compile();
@@ -37,25 +37,21 @@ describe('CreateAccountController', () => {
       balance: 100,
     };
 
-    // Mockando o findUnique para retornar null (não existe usuário com esse email)
     prismaServiceMock.user.findUnique = vi.fn().mockResolvedValueOnce(null);
 
-    // Mockando o create para retornar o usuário criado com o password "hashed"
     prismaServiceMock.user.create = vi.fn().mockResolvedValueOnce({
       id: '1',
       ...createAccountData,
-      password: 'hashedpassword', // Simulando que o password já foi "hasheado"
+      password: 'hashedpassword',
     });
 
-    // Chamada ao controller.handle para testar o comportamento
     await controller.handle(createAccountData);
 
-    // Verificando se o método create foi chamado com os dados corretos
     expect(prismaServiceMock.user.create).toHaveBeenCalledWith({
       data: {
         name: 'John Doe',
         email: 'john@example.com',
-        password: expect.any(String), // Verificando que o password foi 'hasheado'
+        password: expect.any(String),
         birthDate: '1990-01-01',
         balance: 100,
       },
@@ -71,10 +67,8 @@ describe('CreateAccountController', () => {
       balance: 100,
     };
 
-    // Mockando o findUnique para retornar um usuário com o mesmo email (simulando erro de conflito)
     prismaServiceMock.user.findUnique = vi.fn().mockResolvedValueOnce(createAccountData);
 
-    // Espera que o ConflictException seja lançado
     await expect(controller.handle(createAccountData)).rejects.toThrowError(
       new ConflictException('Email already exists')
     );
