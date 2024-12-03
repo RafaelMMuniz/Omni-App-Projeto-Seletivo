@@ -7,6 +7,7 @@ Este projeto foi desenvolvido como parte do processo seletivo para desenvolver b
 - **NestJS**  
 - **Prisma**  
 - **PostgreSQL**  
+- **Vitest**  
 - **Docker**  
 
 ## Instalação e Configuração  
@@ -31,7 +32,7 @@ Este projeto foi desenvolvido como parte do processo seletivo para desenvolver b
 ## Como Rodar o Projeto  
 1. Inicie o servidor:  
    ```bash
-   pnpm start
+   pnpm run start:dev
    ```  
 
 2. Use o cliente HTTP no arquivo `client.http` para testar as rotas da API.  
