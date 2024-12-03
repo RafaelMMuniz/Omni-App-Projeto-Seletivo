@@ -1,15 +1,17 @@
 @baseUrl = http://localhost:3333
 @authToken = {{authenticate.response.body.access_token}}
 
+
+# @name signup
 POST {{baseUrl}}/users/signup
 Content-Type: application/json
 
 {
-  "name": "rosangela",
-  "email": "ro@email.com",
+  "name": "user-teste",
+  "email": "teste@email.com",
   "password": "123456",
-  "birthDate": "1990-01-01",
-  "balance": 100.05
+  "birthDate": "1990-12-03",
+  "balance": 120.05
 }
 
 
@@ -26,6 +28,7 @@ Content-Type: application/json
 
 ###
 
+# @name transfer
 POST {{baseUrl}}/transfer
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
@@ -38,6 +41,7 @@ Content-Type: application/json
 
 ###
 
+# @name getAllUsers
 GET {{baseUrl}}/users
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
