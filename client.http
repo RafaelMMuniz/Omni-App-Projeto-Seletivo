@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.access_token}}
+
+POST {{baseUrl}}/users/signup
+Content-Type: application/json
+
+{
+  "name": "rosangela",
+  "email": "ro@email.com",
+  "password": "123456",
+  "birthDate": "1990-01-01",
+  "balance": 100.05
+}
+
+
+###
+
+# @name authenticate
+POST {{baseUrl}}/users/signin
+Content-Type: application/json
+
+{
+  "email": "joao.silva@example.com",
+  "password": "senha123"
+}
+
+###
+
+POST {{baseUrl}}/transfer
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "fromId": "750b3075-4736-414d-b5cd-3555619ff72b",
+  "toId": "363fd8b0-d990-4dba-960e-e66eaaaf0c43",
+  "amount": 20.00
+}
+
+###
+
+GET {{baseUrl}}/users
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+

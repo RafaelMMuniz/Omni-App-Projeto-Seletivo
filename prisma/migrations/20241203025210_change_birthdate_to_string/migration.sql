@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "birthDate" DROP NOT NULL,
+ALTER COLUMN "birthDate" DROP DEFAULT,
+ALTER COLUMN "birthDate" SET DATA TYPE TEXT;
